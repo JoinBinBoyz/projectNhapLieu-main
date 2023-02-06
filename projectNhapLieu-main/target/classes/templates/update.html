@@ -1,0 +1,406 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    </head>
+
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{css/2cu1page.css}">
+    <style>
+        body {
+            width: 1026px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        table tr {
+            width: 100%;
+        }
+
+        table tr td {
+            text-align: center;
+            height: 40px;
+        }
+
+        table tr th {
+            text-align: center;
+            padding: 5px;
+        }
+
+        .text-left {
+            padding-left: 5px;
+        }
+
+        button {
+            margin: 20px
+        }
+
+    </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <h4 th:text="${message}"></h4>
+            <a href="/list/1"> <input type="button" class="btn btn-primary" value="Home"></input></a>
+            <a href="#">Loging</a>
+        </nav>
+        <h1>KẾT QUẢ QUAN TRẮC GỐC DẦU CÁCH ĐIỆN</h1>
+
+        <form th:action="@{/edit/{id}(id = ${item.id_thong_tin_mau})}" th:object="${item}" method="post">
+            <h2>I. THÔNG TIN MẪU</h2>
+
+            <div class="form-group row">
+                <label for="xuat_xu" class="col-sm-3 col-form-label">1. Xuất xứ</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.xuat_xu}" id="xuat_xu" name="xuat_xu"
+                        placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ngay_lay_mau" class="col-sm-3 col-form-label">2. Ngày lấy mẫu</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.ngay_lay_mau}" id="ngay_lay_mau"
+                        name="ngay_lay_mau">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ngay_nhan_mau" class="col-sm-3 col-form-label">3. Ngày nhận mẫu</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.ngay_nhan_mau}" id="ngay_nhan_mau"
+                        name="ngay_nhan_mau">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ly_do_thi_nghiem" class="col-sm-3 col-form-label">4. Lý do thí nghiệm</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.ly_do_thi_nghiem}" id="ly_do_thi_nghiem"
+                        name="ly_do_thi_nghiem">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phu_trach_lay_mau" class="col-sm-3 col-form-label">5. Phụ trách lẫy mẫu</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.phu_trach_lay_mau}" id="phu_trach_lay_mau"
+                        name="phu_trach_lay_mau">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="don_vi_yeu_cau" class="col-sm-3 col-form-label">6. Đơn vị yêu cầu </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" th:value="${item.don_vi_yeu_cau}" id="don_vi_yeu_cau"
+                        name="don_vi_yeu_cau">
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <label for="yeu_cau_xe" class="col-sm-4 col-form-label">7. Xin xe </label>
+
+                <div class="form-check  col-sm-4">
+                    <input class="form-check-input" type="radio" th:value="${item.yeu_cau_xe}" name="yeu_cau_xe"
+                        id="inlineRadio1" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Có</label>
+                </div>
+                <div class="form-check  col-sm-4">
+                    <input class="form-check-input" type="radio" th:value="${item.yeu_cau_xe}" name="yeu_cau_xe"
+                        id="inlineRadio1" value="false">
+                    <label class="form-check-label" for="inlineRadio1">Không</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-12 col-form-label">8. Hạng mục thử nghiệm </label>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.khi}" name="khi" id="khi"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Khí</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.dien}" name="dien" id="dien"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Điện</label>
+                </div>
+
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.tang}" name="tang" id="tang"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Tang</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.nuoc}" name="nuoc" id="nuoc"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Nước</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.tri_so_acid}" name="tri_so_acid"
+                        id="tri_so_acid" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Trị số acid </label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.chop_chay}" name="chop_chay"
+                        id="chop_chay" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Chớp cháy</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.nhot}" name="nhot" id="nhot"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Nhớt</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.acid_bazo_hoa_tang}"
+                        name="acid_bazo_hoa_tang" id="acid_bazo_hoa_tang" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Acid/bazo hòa tan</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.can_lang}" name="can_lang"
+                        id="can_lang" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Cặn lắng</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.ty_trong}" name="ty_trong"
+                        id="ty_trong" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Tỷ trọng 20&#176;C</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.luu_huynh_an_mon}"
+                        name="luu_huynh_an_mon" id="luu_huynh_an_mon" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Lưu huỳnh ăn mòn</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.pcbs}" name="pcbs" id="pcbs"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">PCBs</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.khang}" name="khang" id="khang"
+                        value="true">
+                    <label class="form-check-label" for="inlineRadio1">Kháng</label>
+                </div>
+                <div class="form-check form-check-inline col-sm-2">
+                    <input class="form-check-input" type="checkbox" th:checked="${item.furfural}" name="furfural"
+                        id="furfural" value="true">
+                    <label class="form-check-label" for="inlineRadio1">Furfural</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">9. Ghi chú </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputPassword">
+                </div>
+            </div>
+
+            <h2>III Số liệu thí nghiệm</h2>
+
+
+            <table border='1'>
+                <tr>
+                    <th rowspan="2">STT</th>
+                    <th rowspan="2">ĐẶC TÍNH</th>
+                    <th rowspan="2">PHƯƠNG PHÁP</th>
+                    <th colspan="3">KẾT QUẢ QUAN TRẮC GỐC</th>
+
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="text-left">Điện áp chọc thủng (kV)/2,5mm</td>
+                    <td>IEC 60156:1995</td>
+                    <td><input type="text" class="form-control" th:value="${item.dien_ap_choc_thung1}"
+                            id="dien_ap_choc_thung1" name="dien_ap_choc_thung1"></td>
+                    <td><input type="text" class="form-control" id="dien_ap_choc_thung2" name="dien_ap_choc_thung2">
+                    </td>
+                    <td><input type="text" class="form-control" id="dien_ap_choc_thung3" name="dien_ap_choc_thung3">
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="text-left">Tg góc tổn thất điện môi ở 90&#176;C(%)</td>
+                    <td>IEC 60247:2004</td>
+                    <td><input type="text" class="form-control" th:value="${item.tg_goc_ton_that_dien_moi1}"
+                            id="tg_goc_ton_that_dien_moi1" name="tg_goc_ton_that_dien_moi1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tg_goc_ton_that_dien_moi2}"
+                            id="tg_goc_ton_that_dien_moi2" name="tg_goc_ton_that_dien_moi2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tg_goc_ton_that_dien_moi3}"
+                            id="tg_goc_ton_that_dien_moi3" name="tg_goc_ton_that_dien_moi3"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="text-left">Hàm lượng nước(ppm)</td>
+                    <td>IEC 60814:1997</td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_nuoc1}" id="ham_luong_nuoc1"
+                            name="ham_luong_nuoc1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_nuoc2}" id="ham_luong_nuoc2"
+                            name="ham_luong_nuoc2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_nuoc3}" id="ham_luong_nuoc3"
+                            name="ham_luong_nuoc3"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="text-left">Trị số acid (mg KOH/g dầu)</td>
+                    <td>ASTM D664-11a</td>
+                    <td><input type="text" class="form-control" th:value="${item.tri_so_acid1}" id="tri_so_acid1"
+                            name="tri_so_acid1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tri_so_acid2}" id="tri_so_acid2"
+                            name="tri_so_acid2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tri_so_acid3}" id="tri_so_acid3"
+                            name="tri_so_acid3"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="text-left">Nhiệt độ chớp cháy(&#176;C)</td>
+                    <td>ASTM D93-15a</td>
+                    <td><input type="text" class="form-control" th:value="${item.nhiet_do_chop_chay1}"
+                            id="nhiet_do_chop_chay1" name="nhiet_do_chop_chay1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.nhiet_do_chop_chay2}"
+                            id="nhiet_do_chop_chay2" name="nhiet_do_chop_chay2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.nhiet_do_chop_chay3}"
+                            id="nhiet_do_chop_chay3" name="nhiet_do_chop_chay3"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="text-left">Độ nhớt ở 40&#176;C (cSt)</td>
+                    <td>ASTM D445-15a</td>
+                    <td><input type="text" class="form-control" th:value="${item.do_nhot_o_401}" id="do_nhot_o_401"
+                            name="do_nhot_o_401"></td>
+                    <td><input type="text" class="form-control" th:value="${item.do_nhot_o_402}" id="do_nhot_o_402"
+                            name="do_nhot_o_402"></td>
+                    <td><input type="text" class="form-control" th:value="${item.do_nhot_o_403}" id="do_nhot_o_403"
+                            name="do_nhot_o_403"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td class="text-left">Acid bazo hòa tan (mg KOH/g dầu)</td>
+                    <td>ASTM D974-14</td>
+                    <td><input type="text" class="form-control" th:value="${item.acid_bazo_hoa_tan1}"
+                            id="acid_bazo_hoa_tan1" name="acid_bazo_hoa_tan1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.acid_bazo_hoa_tan2}"
+                            id="acid_bazo_hoa_tan2" name="acid_bazo_hoa_tan2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.acid_bazo_hoa_tan3}"
+                            id="acid_bazo_hoa_tan3" name="acid_bazo_hoa_tan3"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="text-left">Cặn lắng (%V)</td>
+                    <td>ASTM D2273-12</td>
+                    <td><input type="text" class="form-control" th:value="${item.can_lang1}" id="can_lang1"
+                            name="can_lang1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.can_lang2}" id="can_lang2"
+                            name="can_lang2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.can_lang3}" id="can_lang3"
+                            name="can_lang3"></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="text-left">Tỷ trọng ở 20&#176;C (kg/dm3)</td>
+                    <td>ASTM D1298-12b</td>
+                    <td><input type="text" class="form-control" th:value="${item.ty_trong_o_201}" id="ty_trong_o_201"
+                            name="ty_trong_o_201"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ty_trong_o_202}" id="ty_trong_o_202"
+                            name="ty_trong_o_202"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ty_trong_o_203}" id="ty_trong_o_203"
+                            name="ty_trong_o_203"></td>
+
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td class="text-left">Lưu huỳnh ăn mòn</td>
+                    <td>ASTM D1275-15</td>
+                    <td><input type="text" class="form-control" th:value="${item.luu_huynh_an_mon1}"
+                            id="luu_huynh_an_mon1" name="luu_huynh_an_mon1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.luu_huynh_an_mon2}"
+                            id="luu_huynh_an_mon2" name="luu_huynh_an_mon2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.luu_huynh_an_mon3}"
+                            id="luu_huynh_an_mon3" name="luu_huynh_an_mon3"></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td class="text-left">Hàm lượng PCB trong dầu (ppm)</td>
+                    <td>EPA 9079/EPA Victoria 6013</td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_pcb1}" id="ham_luong_pcb1"
+                            name="ham_luong_pcb1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_pcb2}" id="ham_luong_pcb2"
+                            name="ham_luong_pcb2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_pcb3}" id="ham_luong_pcb3"
+                            name="ham_luong_pcb3"></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td class="text-left">Độ ổn định oxy hóa dầu (ppm)</td>
+                    <td>ASTM D2112-15</td>
+                    <td><input type="text" class="form-control" th:value="${item.do_on_dinh_oxy_hoa_dau1}"
+                            id="do_on_dinh_oxy_hoa_dau1" name="do_on_dinh_oxy_hoa_dau1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.do_on_dinh_oxy_hoa_dau2}"
+                            id="do_on_dinh_oxy_hoa_dau2" name="do_on_dinh_oxy_hoa_dau2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.do_on_dinh_oxy_hoa_dau3}"
+                            id="do_on_dinh_oxy_hoa_dau3" name="do_on_dinh_oxy_hoa_dau3"></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td class="text-left">Hàm lượng 2-furfural và các hợp chất furanic (ppm)</td>
+                    <td>ASTM D5837-15</td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_2_furfural1}"
+                            id="ham_luong_2_furfural1" name="ham_luong_2_furfural1"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_2_furfural2}"
+                            id="ham_luong_2_furfural2" name="ham_luong_2_furfural2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.ham_luong_2_furfural3}"
+                            id="ham_luong_2_furfural3" name="ham_luong_2_furfural3"></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td class="text-left">Tổng lượng khí hòa tan trong dầu (ppm) (TDG)</td>
+                    <td>ASTM D3612-09</td>
+                    <td><input type="text" class="form-control" th:value="${item.tong_luong_khi_hoa_tan1}"
+                            id="tong_luong_khi_hoa_tan1" name="don_vi_yeu_cau"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tong_luong_khi_hoa_tan2}"
+                            id="tong_luong_khi_hoa_tan2" name="tong_luong_khi_hoa_tan2"></td>
+                    <td><input type="text" class="form-control" th:value="${item.tong_luong_khi_hoa_tan3}"
+                            id="tong_luong_khi_hoa_tan3" name="tong_luong_khi_hoa_tan3"></td>
+                </tr>
+            </table>
+            <br/>
+            <input type="submit" class="btn btn-primary" value = "SAVE" />
+            
+
+            
+
+
+        </form>
+
+
+
+
+        <footer class="page-footer font-small blue">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

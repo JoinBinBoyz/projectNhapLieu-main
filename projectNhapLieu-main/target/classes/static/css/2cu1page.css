@@ -1,0 +1,29 @@
+
+
+body{
+    width: 1026px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+h1{
+    text-align: center;
+    padding:20px 0;
+}
+table tr {
+    width: 100%;
+}
+table  tr td{
+    text-align: center;
+    height:40px;
+}
+table  tr th{
+    text-align: center;
+    padding:5px;
+}
+.text-left{
+    padding-left:5px;
+}
+
+button{
+    margin:20px
+}
